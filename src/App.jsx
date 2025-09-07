@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import {  Routes, Route } from 'react-router-dom';
+import {  Routes, Route, useLocation } from 'react-router-dom';
 import HomePage from './pages/HomePage.jsx';
 import AboutUs from './pages/AboutUs.jsx';
 import ContactUs from './pages/ContactUs.jsx';
@@ -12,9 +12,14 @@ import Header from './components/Header.jsx';
 
 
 function App () {
+   const location = useLocation();
+
+
+  const hideLayout = ["/log-in", "/sign-up"].includes(location.pathname);
+
   return (
      <>
-      <Header/>
+       {!hideLayout && <Header />}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/about-us" element={<AboutUs />} />
@@ -24,7 +29,7 @@ function App () {
         <Route path="/log-in" element={<LogInPage />} />
         <Route path="/sign-up" element={<SignUpPage />} />
     </Routes>
-    <Footer />
+     {!hideLayout && <Footer />}
      
      </>
   )
