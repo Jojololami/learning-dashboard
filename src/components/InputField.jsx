@@ -19,8 +19,8 @@ const InputField = ({
   };
 
   const getMinLength = (inputType) => {
-    if (inputType === "text") return 6;
-    if (inputType === "password") return 8;
+    if (inputType === "text") return 5;
+    if (inputType === "password") return 5;
   };
 
   return (
@@ -48,7 +48,7 @@ const InputField = ({
             tabIndex={-1}
             type="button"
           >
-            {showPassword ? <FiEyeOff /> : <FiEye />}
+            {showPassword ? <FiEye /> : <FiEyeOff />}
           </button>
         )}
       </div>

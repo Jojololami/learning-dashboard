@@ -1,13 +1,16 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import logo from "../assets/logo.png";
 import InputField from "../components/InputField";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function LoginPage() {
-  const [loginDetails, setLoginDetails] = useState({
+function SignUp() {
+  const [accountDetails, setAccountDetails] = useState({
+    fullName: "",
     email: "",
     password: "",
+    passwordConfirmation: "",
   });
 
   const [submitting, setSubmitting] = useState(false);
@@ -15,34 +18,57 @@ function LoginPage() {
 
   const handleChange = (e) => {
     const { name, value } = e.currentTarget;
-    setLoginDetails((prevDetails) => ({
-      ...prevDetails,
+    setAccountDetails((prev) => ({
+      ...prev,
       [name]: value,
     }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { email, password } = loginDetails;
+    const { fullName, email, password, passwordConfirmation } = accountDetails;
 
-    const toastId = toast.loading("Logging in..."); // show loading toast
+    if (password !== passwordConfirmation) {
+      toast.error("Passwords do not match");
+      return;
+    }
+
     setSubmitting(true);
+    const toastId = toast.loading("Creating your account...");
 
     try {
-      // ⏳ simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      // ✅ Make API call to ReqRes for registration
+      const response = await fetch("https://reqres.in/api/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: "eve.holt@reqres.in",
+          password: "pistol",
+        }),
+      });
 
-      if (email === "test@example.com" && password === "password123") {
+      const data = await response.json();
+
+      if (response.ok) {
         toast.update(toastId, {
-          render: "Login successful 👌",
+          render: "Account successfully created 👌",
           type: "success",
           isLoading: false,
           autoClose: 3000,
         });
 
-        navigate("/"); // redirect to home
+        // reset form
+        setAccountDetails({
+          fullName: "",
+          email: "",
+          password: "",
+          passwordConfirmation: "",
+        });
+
+        // navigate after signup
+        navigate("/login");
       } else {
-        throw new Error("Invalid credentials");
+        throw new Error(data.error || "Registration failed");
       }
     } catch (error) {
       toast.update(toastId, {
@@ -53,16 +79,32 @@ function LoginPage() {
       });
     } finally {
       setSubmitting(false);
-      setLoginDetails({ email: "", password: "" });
     }
   };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="bg-white shadow-xl rounded-2xl p-8 w-[350px]">
-        <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
+        <div className="flex justify-center gap-[10px] items-center mb-5 font-bold text-[14px]">
+          <img src={logo} className="w-10" alt="Logo" />
+          <p>Learn Tech Hub</p>
+        </div>
+        <h2 className="text-xl font-bold text-center mb-4">
+          Create Your Account
+        </h2>
 
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+          <InputField
+            label="Full Name"
+            name="fullName"
+            placeholder="Enter full name"
+            inputType="text"
+            required={true}
+            handleChange={handleChange}
+            value={accountDetails.fullName}
+            isPassword={false}
+          />
+
           <InputField
             label="Email"
             name="email"
@@ -70,7 +112,7 @@ function LoginPage() {
             inputType="email"
             required={true}
             handleChange={handleChange}
-            value={loginDetails.email}
+            value={accountDetails.email}
             isPassword={false}
           />
 
@@ -81,24 +123,39 @@ function LoginPage() {
             inputType="password"
             required={true}
             handleChange={handleChange}
-            value={loginDetails.password}
+            value={accountDetails.password}
+            isPassword={true}
+          />
+
+          <InputField
+            label="Confirm Password"
+            name="passwordConfirmation"
+            placeholder="Confirm your password"
+            inputType="password"
+            required={true}
+            handleChange={handleChange}
+            value={accountDetails.passwordConfirmation}
             isPassword={true}
           />
 
           <button
             type="submit"
             disabled={submitting}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 rounded-lg transition disabled:bg-gray-400"
+            className="bg-[#3b7d3b]  hover:bg-[#D28C8C]  text-white font-bold py-2 rounded-lg mt-3 transition disabled:bg-gray-400"
           >
-            {submitting ? "Logging in..." : "Login"}
+            {submitting ? "Signing up..." : "Sign Up"}
           </button>
         </form>
-      </div>
 
-      {/* Toast container (must be inside app) */}
-      <ToastContainer />
+        <p className="text-center mt-3 text-slate-500 text-lg font-medium">
+          Already have an account?{" "}
+          <span className="text-blue-500 cursor-pointer">
+            <Link to="/log-in">Log In</Link>
+          </span>
+        </p>
+      </div>
     </div>
   );
 }
 
-export default LoginPage;
+export default SignUp;
