@@ -33,7 +33,10 @@ function LoginPage() {
     try {
       const response = await fetch("https://reqres.in/api/login", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "x-api-key": "reqres-free-v1",
+        },
         body: JSON.stringify({ email, password }),
       });
 
@@ -46,7 +49,7 @@ function LoginPage() {
           isLoading: false,
           autoClose: 3000,
         });
-        navigate("/dashboard"); // navigate to dashboard/home
+        navigate("/dashboard");
       } else {
         throw new Error(data.error || "Login failed");
       }
@@ -71,7 +74,7 @@ function LoginPage() {
         </div>
         <h2 className="text-xl font-bold text-center">LogIn to Your Account</h2>
 
-        <form onSubmit={handleSubmit} className="flex flex-col gap-1">
+        <form onSubmit={handleSubmit} className="flex flex-col">
           <InputField
             label="Email"
             name="email"
@@ -103,10 +106,24 @@ function LoginPage() {
           </button>
         </form>
 
+        <div className="flex items-center gap-2 m-2">
+          <input
+            type="checkbox"
+            id="rememberMe"
+            className="w-4 h-4 cursor-pointer"
+          />
+          <label
+            htmlFor="rememberMe"
+            className="text-sm text-gray-600 cursor-pointer"
+          >
+            Remember me
+          </label>
+        </div>
+
         <p className="text-center mt-3 text-slate-500 text-lg font-medium">
           Don't have an account?{" "}
           <span className="text-blue-500 cursor-pointer">
-            <Link to="/sign-up">SIgnUp Here</Link>
+            <Link to="/sign-up">SignUp Here</Link>
           </span>
         </p>
       </div>

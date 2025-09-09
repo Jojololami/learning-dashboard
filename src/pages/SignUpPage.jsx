@@ -37,10 +37,12 @@ function SignUp() {
     const toastId = toast.loading("Creating your account...");
 
     try {
-      // ✅ Make API call to ReqRes for registration
       const response = await fetch("https://reqres.in/api/register", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "x-api-key": "reqres-free-v1",
+        },
         body: JSON.stringify({
           email: "eve.holt@reqres.in",
           password: "pistol",
@@ -57,7 +59,6 @@ function SignUp() {
           autoClose: 3000,
         });
 
-        // reset form
         setAccountDetails({
           fullName: "",
           email: "",
@@ -65,8 +66,7 @@ function SignUp() {
           passwordConfirmation: "",
         });
 
-        // navigate after signup
-        navigate("/login");
+        navigate("/log-in");
       } else {
         throw new Error(data.error || "Registration failed");
       }
@@ -152,6 +152,12 @@ function SignUp() {
           <span className="text-blue-500 cursor-pointer">
             <Link to="/log-in">Log In</Link>
           </span>
+        </p>
+
+        <p className="text-sm text-center">
+          By signing up, you are agreeing that you have read and agreed to our{" "}
+          <a className="pt-5 text-blue-400 font-bold">Terms of use</a> and{" "}
+          <a className="pt-5 text-blue-400 font-bold">Privacy Policy</a>
         </p>
       </div>
     </div>

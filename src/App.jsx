@@ -9,6 +9,7 @@ import LogInPage from "./pages/LogInPage.jsx";
 import SignUpPage from "./pages/SignUpPage.jsx";
 import Footer from "./components/Footer.jsx";
 import Header from "./components/Header.jsx";
+import DashboardPage from "./pages/DashboardPage.jsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -28,6 +29,7 @@ function App() {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/log-in" element={<LogInPage />} />
         <Route path="/sign-up" element={<SignUpPage />} />
+        <Route path="/dashboard" element={<DashboardPage />} />
       </Routes>
       {!hideLayout && <Footer />}
       <ToastContainer
