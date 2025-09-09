@@ -1,8 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCode } from "@fortawesome/free-solid-svg-icons";
+import { faCode, faShieldAlt } from "@fortawesome/free-solid-svg-icons";
 import { faMobileScreenButton } from "@fortawesome/free-solid-svg-icons";
+import { faHexagonNodes } from "@fortawesome/free-solid-svg-icons";
+import { faCloudArrowUp } from "@fortawesome/free-solid-svg-icons";
+import { FaShieldAlt } from "react-icons/fa";
 
 const FeaturesPage = () => {
   return (
@@ -27,17 +30,17 @@ const FeaturesPage = () => {
               websites. Perfect for beginners and aspiring software engineers.
             </p>
             <div>
-              <a href="/sign-up">
+              <Link to="/sign-up">
                 <button className="bg-[#D28C8C] text-black w-56 h-16 rounded-xl">
                   Start Learning
                 </button>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
 
         <div className="bg-[#3b7d3b] flex flex-row items-center gap-12 py-10 px-8 border rounded-2xl w-[1100px] ml-24 mt-14 text-white">
-          <FontAwesomeIcon icon={faMobileScreenButton} />
+          <FontAwesomeIcon icon={faMobileScreenButton} size="5x" />
 
           <div className="flex flex-col justify-center text-left">
             <h3 className="text-3xl text-black font-bold mb-4">
@@ -49,17 +52,17 @@ const FeaturesPage = () => {
               of users.
             </p>
             <div>
-              <a href="/sign-up">
+              <Link to="/sign-up">
                 <button className="bg-[#D28C8C] text-black w-56 h-16 rounded-xl">
                   Enroll Now
                 </button>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
 
         <div className="bg-[#3b7d3b] flex flex-row items-center gap-12 py-10 px-8 border rounded-2xl w-[1100px] ml-24 mt-14 text-white">
-          <FontAwesomeIcon icon={faCode} size="5x" className="p-4" />
+          <FontAwesomeIcon icon={faHexagonNodes} size="5x" className="p-4" />
 
           <div className="flex flex-col justify-center text-left">
             <h3 className="text-3xl text-black font-bold mb-4">
@@ -71,17 +74,17 @@ const FeaturesPage = () => {
               in-demand tech fields.
             </p>
             <div>
-              <a href="/sign-up">
+              <Link to="/sign-up">
                 <button className="bg-[#D28C8C] text-black w-56 h-16 rounded-xl">
                   Get Started
                 </button>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
 
         <div className="bg-[#3b7d3b] flex flex-row items-center gap-12 py-10 px-8 border rounded-2xl w-[1100px] ml-24 mt-14 text-white">
-          <FontAwesomeIcon icon={faCode} size="5x" className="p-4" />
+          <FontAwesomeIcon icon={faCloudArrowUp} size="5x" className="p-4" />
 
           <div className="flex flex-col justify-center text-left">
             <h3 className="text-3xl text-black font-bold mb-4">
@@ -93,17 +96,17 @@ const FeaturesPage = () => {
               startups and enterprises.
             </p>
             <div>
-              <a href="/sign-up">
+              <Link to="/sign-up">
                 <button className="bg-[#D28C8C] text-black w-56 h-16 rounded-xl">
                   View Course
                 </button>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
 
         <div className="bg-[#3b7d3b] flex flex-row items-center gap-12 py-10 px-8 border rounded-2xl w-[1100px] ml-24 mt-14 text-white">
-          <FontAwesomeIcon icon={faCode} size="5x" className="p-4" />
+          <FontAwesomeIcon icon={faShieldAlt} size="5x" className="p-4" />
 
           <div className="flex flex-col justify-center text-left">
             <h3 className="text-3xl text-black font-bold mb-4">
@@ -115,11 +118,11 @@ const FeaturesPage = () => {
               become a certified ethical hacker.
             </p>
             <div>
-              <a href="/sign-up">
+              <Link to="/sign-up">
                 <button className="bg-[#D28C8C] text-black w-56 h-16 rounded-xl">
                   Join Now
                 </button>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

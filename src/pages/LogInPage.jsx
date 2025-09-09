@@ -106,7 +106,7 @@ function LoginPage() {
           </button>
         </form>
 
-        <div className="flex items-center gap-2 m-2">
+        <div className="flex items-center gap-1 m-2">
           <input
             type="checkbox"
             id="rememberMe"
@@ -118,6 +118,10 @@ function LoginPage() {
           >
             Remember me
           </label>
+
+          <p className="text-sm text-gray-600 cursor-pointer ml-auto">
+            <Link to="/forgot-password">Forgot Password</Link>
+          </p>
         </div>
 
         <p className="text-center mt-3 text-slate-500 text-lg font-medium">

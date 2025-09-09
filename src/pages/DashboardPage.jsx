@@ -1,9 +1,32 @@
-import React from 'react'
+import React from "react";
+import { Link } from "react-router-dom";
 
 const DashboardPage = () => {
   return (
-    <div>DashboardPage</div>
-  )
-}
+    <>
+      <sectiom className="flex justify-between items-center pl-16 pr-16 bg-[#FFFDD0]">
+        <nav>
+          <ul className="flex gap-10 items-center text-green-700">
+            <li>
+              <Link to="/dashboard">Dashboard Home</Link>
+            </li>
 
-export default DashboardPage
+            <li>
+              <Link to="/profile">Profile</Link>
+            </li>
+
+            <li>
+              <Link to="/course">Course</Link>
+            </li>
+
+            <li>
+              <Link to="/assignments">Assignments</Link>
+            </li>
+          </ul>
+        </nav>
+      </sectiom>
+    </>
+  );
+};
+
+export default DashboardPage;

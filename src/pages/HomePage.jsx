@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChalkboardUser } from "@fortawesome/free-solid-svg-icons";
 import { faFileVideo } from "@fortawesome/free-solid-svg-icons";
 import { faBrain } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 const HomePage = () => {
   const navigate = useNavigate();
 
@@ -32,11 +33,11 @@ const HomePage = () => {
             The most complete online learning solution for techies
           </p>
 
-          <a href="/sign-up">
+          <Link to="/sign-up">
             <button className="bg-[#3b7d3b]  text-white w-56 h-16 rounded-xl mr-24">
               Join for free
             </button>
-          </a>
+          </Link>
         </div>
 
         <div className="flex-1 relative text-center">
@@ -139,11 +140,11 @@ const HomePage = () => {
             Take the first step to <br /> a skilled and better you!
           </p>
 
-          <a href="/sign-up">
+          <Link to="/sign-up">
             <button className="bg-[#3b7d3b]  text-white w-56 h-16 rounded-xl mr-24">
               Get Started
             </button>
-          </a>
+          </Link>
         </div>
       </div>
     </>

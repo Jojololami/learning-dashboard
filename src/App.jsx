@@ -10,13 +10,25 @@ import SignUpPage from "./pages/SignUpPage.jsx";
 import Footer from "./components/Footer.jsx";
 import Header from "./components/Header.jsx";
 import DashboardPage from "./pages/DashboardPage.jsx";
+import ProfilePage from "./components/ProfilePage.jsx";
+import CoursesPage from "./components/CoursesPage.jsx";
+import AssignmentPage from "./components/AssignmentsPage.jsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import AssignmentsPage from "./components/AssignmentsPage.jsx";
 
 function App() {
   const location = useLocation();
 
-  const hideLayout = ["/log-in", "/sign-up"].includes(location.pathname);
+  const hideLayout = [
+    "/log-in",
+    "/sign-up",
+    "/forgot-password",
+    "/dashboard",
+    "/profile",
+    "/course",
+    "/assignments",
+  ].includes(location.pathname);
 
   return (
     <>
@@ -30,6 +42,9 @@ function App() {
         <Route path="/log-in" element={<LogInPage />} />
         <Route path="/sign-up" element={<SignUpPage />} />
         <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/course" element={<CoursesPage />} />
+        <Route path="/assignments" element={<AssignmentsPage />} />
       </Routes>
       {!hideLayout && <Footer />}
       <ToastContainer
