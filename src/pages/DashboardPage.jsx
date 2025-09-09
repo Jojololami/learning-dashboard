@@ -1,31 +1,71 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const DashboardPage = () => {
   return (
-    <>
-      <sectiom className="flex justify-between items-center pl-16 pr-16 bg-[#FFFDD0]">
+    <div className="flex min-h-screen">
+      <aside className="w-64 bg-[#FFFDD0] p-6">
         <nav>
-          <ul className="flex gap-10 items-center text-green-700">
+          <ul className="flex flex-col gap-6 text-green-700 font-medium">
             <li>
-              <Link to="/dashboard">Dashboard Home</Link>
+              <NavLink
+                to="/dashboard"
+                className={({ isActive }) =>
+                  isActive
+                    ? "underline underline-offset-4 text-green-900"
+                    : "hover:underline"
+                }
+              >
+                Dashboard Home
+              </NavLink>
             </li>
-
             <li>
-              <Link to="/profile">Profile</Link>
+              <NavLink
+                to="/profile"
+                className={({ isActive }) =>
+                  isActive
+                    ? "underline underline-offset-4 text-green-900"
+                    : "hover:underline"
+                }
+              >
+                Profile
+              </NavLink>
             </li>
-
             <li>
-              <Link to="/course">Course</Link>
+              <NavLink
+                to="/course"
+                className={({ isActive }) =>
+                  isActive
+                    ? "underline underline-offset-4 text-green-900"
+                    : "hover:underline"
+                }
+              >
+                Course Outline
+              </NavLink>
             </li>
-
             <li>
-              <Link to="/assignments">Assignments</Link>
+              <NavLink
+                to="/assignments"
+                className={({ isActive }) =>
+                  isActive
+                    ? "underline underline-offset-4 text-green-900"
+                    : "hover:underline"
+                }
+              >
+                Assignments
+              </NavLink>
             </li>
           </ul>
         </nav>
-      </sectiom>
-    </>
+      </aside>
+
+      <main className="flex-1 p-8">
+        <h1 className="text-2xl font-bold">Welcome to your Dashboard</h1>
+        <p className="mt-4 text-gray-600">
+          Select a page from the sidebar to continue.
+        </p>
+      </main>
+    </div>
   );
 };
 

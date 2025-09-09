@@ -5,7 +5,6 @@ import { faCode, faShieldAlt } from "@fortawesome/free-solid-svg-icons";
 import { faMobileScreenButton } from "@fortawesome/free-solid-svg-icons";
 import { faHexagonNodes } from "@fortawesome/free-solid-svg-icons";
 import { faCloudArrowUp } from "@fortawesome/free-solid-svg-icons";
-import { FaShieldAlt } from "react-icons/fa";
 
 const FeaturesPage = () => {
   return (
