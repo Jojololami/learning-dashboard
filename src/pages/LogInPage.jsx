@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import InputField from "../components/InputField";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Link } from "react-router-dom";
 
 function LoginPage() {
   const [loginDetails, setLoginDetails] = useState({
@@ -66,15 +65,21 @@ function LoginPage() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="bg-white shadow-xl rounded-2xl p-8 w-[350px]">
-        <div className="flex justify-center gap-[10px] items-center mb-5 font-bold text-[14px]">
-          <img src={logo} className="w-10" alt="" />
+    <div className="flex items-center justify-center min-h-screen bg-gray-100 px-4">
+      <div className="bg-white shadow-xl rounded-2xl p-6 sm:p-8 w-full max-w-sm sm:max-w-md">
+       
+        <div className="flex justify-center gap-2 items-center mb-6 font-bold text-[14px] sm:text-base">
+          <img src={logo} className="w-10 sm:w-12" alt="Logo" />
           <p>Learn Tech Hub</p>
         </div>
-        <h2 className="text-xl font-bold text-center">LogIn to Your Account</h2>
 
-        <form onSubmit={handleSubmit} className="flex flex-col">
+       
+        <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-center mb-4">
+          Log In to Your Account
+        </h2>
+
+       
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <InputField
             label="Email"
             name="email"
@@ -100,34 +105,33 @@ function LoginPage() {
           <button
             type="submit"
             disabled={submitting}
-            className="bg-[#3b7d3b]  hover:bg-[#D28C8C] text-white font-bold py-2 rounded-lg transition disabled:bg-gray-400"
+            className="bg-[#3b7d3b] hover:bg-[#D28C8C] text-white font-bold py-2 rounded-lg transition disabled:bg-gray-400"
           >
             {submitting ? "Logging in..." : "Login"}
           </button>
         </form>
 
-        <div className="flex items-center gap-1 m-2">
+        
+        <div className="flex items-center gap-2 mt-4 text-sm sm:text-base">
           <input
             type="checkbox"
             id="rememberMe"
             className="w-4 h-4 cursor-pointer"
           />
-          <label
-            htmlFor="rememberMe"
-            className="text-sm text-gray-600 cursor-pointer"
-          >
+          <label htmlFor="rememberMe" className="text-gray-600 cursor-pointer">
             Remember me
           </label>
 
-          <p className="text-sm text-gray-600 cursor-pointer ml-auto">
-            <Link to="/forgot-password">Forgot Password</Link>
+          <p className="text-gray-600 cursor-pointer ml-auto">
+            <Link to="/forgot-password">Forgot Password?</Link>
           </p>
         </div>
 
-        <p className="text-center mt-3 text-slate-500 text-lg font-medium">
-          Don't have an account?{" "}
-          <span className="text-blue-500 cursor-pointer">
-            <Link to="/sign-up">SignUp Here</Link>
+      
+        <p className="text-center mt-5 text-gray-500 text-sm sm:text-base">
+          Don&apos;t have an account?{" "}
+          <span className="text-blue-500 cursor-pointer font-medium">
+            <Link to="/sign-up">Sign Up Here</Link>
           </span>
         </p>
       </div>

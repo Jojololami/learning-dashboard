@@ -83,17 +83,18 @@ function SignUp() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="bg-white shadow-xl rounded-2xl p-8 w-[350px]">
-        <div className="flex justify-center gap-[10px] items-center mb-5 font-bold text-[14px]">
+    <div className="flex items-center justify-center min-h-screen bg-gray-100 px-4 sm:px-6">
+      <div className="bg-white shadow-xl rounded-2xl p-6 sm:p-8 w-full max-w-md">
+        <div className="flex justify-center gap-2 items-center mb-5 font-bold text-sm sm:text-base">
           <img src={logo} className="w-10" alt="Logo" />
           <p>Learn Tech Hub</p>
         </div>
-        <h2 className="text-xl font-bold text-center mb-4">
+
+        <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-center mb-4">
           Create Your Account
         </h2>
 
-        <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-3">
           <InputField
             label="Full Name"
             name="fullName"
@@ -141,23 +142,28 @@ function SignUp() {
           <button
             type="submit"
             disabled={submitting}
-            className="bg-[#3b7d3b]  hover:bg-[#D28C8C]  text-white font-bold py-2 rounded-lg mt-3 transition disabled:bg-gray-400"
+            className="bg-[#3b7d3b] hover:bg-[#D28C8C] text-white font-bold py-2 rounded-lg mt-3 transition disabled:bg-gray-400"
           >
             {submitting ? "Signing up..." : "Sign Up"}
           </button>
         </form>
 
-        <p className="text-center mt-3 text-slate-500 text-lg font-medium">
+        <p className="text-center mt-3 text-gray-600 text-sm sm:text-base font-medium">
           Already have an account?{" "}
-          <span className="text-blue-500 cursor-pointer">
-            <Link to="/log-in">Log In</Link>
-          </span>
+          <Link to="/log-in" className="text-blue-500 hover:underline">
+            Log In
+          </Link>
         </p>
 
-        <p className="text-sm text-center">
-          By signing up, you are agreeing that you have read and agreed to our{" "}
-          <a className="pt-5 text-blue-400 font-bold">Terms of use</a> and{" "}
-          <a className="pt-5 text-blue-400 font-bold">Privacy Policy</a>
+        <p className="text-xs sm:text-sm text-center mt-4 text-gray-500">
+          By signing up, you agree to our{" "}
+          <a className="text-blue-400 font-bold hover:underline">
+            Terms of Use
+          </a>{" "}
+          and{" "}
+          <a className="text-blue-400 font-bold hover:underline">
+            Privacy Policy
+          </a>
         </p>
       </div>
     </div>
