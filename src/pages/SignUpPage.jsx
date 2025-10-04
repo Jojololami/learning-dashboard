@@ -109,7 +109,7 @@ function SignUp() {
           <InputField
             label="Email"
             name="email"
-            placeholder="Enter your email"
+            placeholder="Use: eve.holt@reqres.in "
             inputType="email"
             required={true}
             handleChange={handleChange}
