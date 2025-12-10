@@ -41,11 +41,12 @@ function SignUp() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "x-api-key": "reqres-free-v1",
+            "Accept": "*/*",
+    
         },
         body: JSON.stringify({
-          email: "eve.holt@reqres.in",
-          password: "pistol",
+          email,
+          password,
         }),
       });
 
