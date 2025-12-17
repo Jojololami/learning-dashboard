@@ -37,7 +37,7 @@ function SignUp() {
     const toastId = toast.loading("Creating your account...");
 
     try {
-      const response = await fetch("https://reqres.in/api/register", {
+      const response = await fetch("https://693aa5ba9b80ba7262cabc59.mockapi.io/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -45,8 +45,9 @@ function SignUp() {
     
         },
         body: JSON.stringify({
-          email,
-          password,
+          fullName,
+  email,
+  password,
         }),
       });
 
@@ -110,7 +111,7 @@ function SignUp() {
           <InputField
             label="Email"
             name="email"
-            placeholder="Use: eve.holt@reqres.in "
+            placeholder="Enter your email"
             inputType="email"
             required={true}
             handleChange={handleChange}

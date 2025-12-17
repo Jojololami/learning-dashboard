@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import InputField from "../components/InputField";
@@ -11,8 +11,21 @@ function LoginPage() {
     password: "",
   });
 
+  const [rememberMe, setRememberMe] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const navigate = useNavigate();
+
+  // Load remembered email on component mount
+  useEffect(() => {
+    const rememberedEmail = localStorage.getItem("rememberedEmail");
+    if (rememberedEmail) {
+      setLoginDetails((prev) => ({
+        ...prev,
+        email: rememberedEmail,
+      }));
+      setRememberMe(true);
+    }
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.currentTarget;
@@ -22,47 +35,66 @@ function LoginPage() {
     }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const { email, password } = loginDetails;
-
-    const toastId = toast.loading("Logging in...");
-    setSubmitting(true);
-
-    try {
-      const response = await fetch("https://reqres.in/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "x-api-key": "reqres-free-v1",
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        toast.update(toastId, {
-          render: "Login successful 👌",
-          type: "success",
-          isLoading: false,
-          autoClose: 3000,
-        });
-        navigate("/dashboard");
-      } else {
-        throw new Error(data.error || "Login failed");
-      }
-    } catch (error) {
-      toast.update(toastId, {
-        render: error.message,
-        type: "error",
-        isLoading: false,
-        autoClose: 3000,
-      });
-    } finally {
-      setSubmitting(false);
-    }
+  const handleRememberMeChange = (e) => {
+    setRememberMe(e.currentTarget.checked);
   };
+
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+  const { email, password } = loginDetails;
+
+  const toastId = toast.loading("Logging in...");
+  setSubmitting(true);
+
+  try {
+    // Construct the correct MockAPI URL
+    const url = `https://693aa5ba9b80ba7262cabc59.mockapi.io/users`;
+    const response = await fetch(url);
+
+    // Handle network or 404 errors
+    if (!response.ok) {
+      throw new Error("Network error, please try again later");
+    }
+
+    const users = await response.json();
+
+    // Find user with matching email AND password
+    const user = users.find(u => u.email === email && u.password === password);
+
+    if (!user) {
+      throw new Error("Invalid email or password");
+    }
+
+    // Store user in localStorage only after successful login
+    localStorage.setItem("user", JSON.stringify(user));
+
+    // Store or clear remembered email based on checkbox
+    if (rememberMe) {
+      localStorage.setItem("rememberedEmail", email);
+    } else {
+      localStorage.removeItem("rememberedEmail");
+    }
+
+    toast.update(toastId, {
+      render: "Login successful 👌",
+      type: "success",
+      isLoading: false,
+      autoClose: 3000,
+    });
+
+    navigate("/dashboard");
+  } catch (error) {
+    toast.update(toastId, {
+      render: error.message,
+      type: "error",
+      isLoading: false,
+      autoClose: 3000,
+    });
+  } finally {
+    setSubmitting(false);
+  }
+};
+
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 px-4">
@@ -117,6 +149,8 @@ function LoginPage() {
             type="checkbox"
             id="rememberMe"
             className="w-4 h-4 cursor-pointer"
+            checked={rememberMe}
+            onChange={handleRememberMeChange}
           />
           <label htmlFor="rememberMe" className="text-gray-600 cursor-pointer">
             Remember me

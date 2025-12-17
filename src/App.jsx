@@ -13,6 +13,7 @@ import DashboardLayout from "./pages/DashboardLayout.jsx";
 import ProfilePage from "./components/ProfilePage.jsx";
 import CoursesPage from "./components/CoursesPage.jsx";
 import AssignmentsPage from "./components/AssignmentsPage.jsx";
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -45,7 +46,14 @@ function App() {
         <Route path="/sign-up" element={<SignUpPage />} />
 
         {/* Dashboard Pages with Shared Sidebar */}
-        <Route path="/" element={<DashboardLayout />}>
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <DashboardLayout />
+            </ProtectedRoute>
+          }
+        >
           <Route path="dashboard" element={<DashboardPage />} />
           <Route path="profile" element={<ProfilePage />} />
           <Route path="course" element={<CoursesPage />} />
